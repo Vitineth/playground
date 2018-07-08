@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style>
+	canvas{
+		/* Kind of irrelevant due to the canvas being this size anyway but its left for instructional purposes*/
+		/* The image rendering hint means that the canvas will be scaled using nearest neighbour (no interpolation)*/
+		/* This means squares stay square instead of giving the horrible blurred edge effect*/
+		/* The only downside is that this requires the new scale to be a multiple of the old scale or everything looks awful*/
+		width: 1000px;
+		image-rendering: pixelated;
+	}
+
+	#run{
+		vertical-align: top;
+	}
+</style>
+</head>
+
+<body>
+    <canvas width="1000" height="1000"></canvas>
+    <button id="run">Run</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="walker.js"></script>
+</body>
+
+</html>
