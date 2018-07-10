@@ -2,7 +2,7 @@
 
 This is a basic audio visualiser. It is split into two subprojects: `3d` and `2d` which, as the names suggest are 3d and 2d versions of the same project
 
-## `3d`
+## [`3d`](3d/README.md)
 
 This uses threejs to generate a 3d scene that you can pan and move around during the visualisation. Points are located in x and y space using the time domain data as it provides more variation. There is an explanation in the code as to how this is determined which is copied below. The z location is determined from the frequency data which is the other key difference from the 2d version as this value is represented by a second ring. 
 
@@ -22,7 +22,7 @@ An example output is shown below although a lot of the effect is lost without be
 
 ![An example output of the 3D visualiser at a random instant](https://i.imgur.com/NJmhuWx.png)
 
-## `2d`
+## [`2d`](2d/README.md)
 
 This uses the same idea as the 3d version (and was actually developed first so it should really be the other way around). The innermost ring uses the same code as above to determine x and y and the outermost ring uses the same code but uses the frequencyData instead. There is also the slight modification that it does not render points that have a default position. This means that points appear and disappear and there is not a plain circle surrounding it which didn't quite look as good.
 
