@@ -36,7 +36,7 @@ An example output is shown below although a lot of the effect is lost without be
 
 ![An example output of the 3D visualiser at a random instant](https://i.imgur.com/NJmhuWx.png)
 
-#### [`2d`](visualiser/3d/README.md)
+#### [`2d`](visualiser/2d/README.md)
 
 This uses the same idea as the 3d version (and was actually developed first so it should really be the other way around). The innermost ring uses the same code as above to determine x and y and the outermost ring uses the same code but uses the frequencyData instead. There is also the slight modification that it does not render points that have a default position. This means that points appear and disappear and there is not a plain circle surrounding it which didn't quite look as good.
 
