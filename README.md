@@ -46,7 +46,7 @@ An example output is shown below
 
 ![Example output of the 2D visualiser at a random instant](https://i.imgur.com/MiYY5Mk.png)
 
-### [`terrain`](terrain/README.md)
+### [`terrain`](terrain)
 
 This is an implementation of the [diamond-square algorithm](https://en.wikipedia.org/wiki/Diamond-square_algorithm) which generates a random terrain map of a given resolution and then displays it as a graph surface using Plottly.js.
 

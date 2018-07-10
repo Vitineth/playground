@@ -8,3 +8,4 @@ An example output is given below
 
 ![Example output of the terrain generator](https://i.imgur.com/BUUf9pJ.png)
 
+**[A demo is available here](terrain.html)**
