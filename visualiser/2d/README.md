@@ -8,5 +8,5 @@ An example output is shown below
 
 ![Example output of the 2D visualiser at a random instant](https://i.imgur.com/MiYY5Mk.png)
 
-**[A demo is available here](visualiser/2d/visualiser.html)**
+**[A demo is available here](visualiser.html)**
 

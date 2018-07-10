@@ -18,4 +18,4 @@ An example output is shown below although a lot of the effect is lost without be
 
 ![An example output of the 3D visualiser at a random instant](https://i.imgur.com/NJmhuWx.png)
 
-**[A demo is available here](visualiser/3d/visualiser.3d.html)**
+**[A demo is available here](visualiser.3d.html)**
