@@ -1,26 +1,12 @@
-# playground
-
-This is just a repository that is going to contain all of the random stuff that I make. A lot of these will be pretty shoddy and developed quite badly but I will try and go through an at least comment them with what they are doing. The majority of these will be things finished at 2/3am so the code will likely be inefficient or slightly buggy.
-
-## Projects
-
-### `walker`
-
-This a path walker visualisation program. Built entirely in JS, a point walks around a grid and a map is drawn of its movements. The more times it visits a point, the large the circle drawn at that point of the grid is. As the code stands in the repo an unvisited spot is 4 times more likely to be visited than a visited spot. Additionally, the more times a point is visited, the lighter the colour is at that point. It is advised to run this with the console open as progress and some statistical information is printed there, rather than the main screen.
-
-An example of the output is given below.
-
-![Example of Output](https://imgur.com/qsc75Jq.png)
-
-### `visualiser`
+# `visualiser`
 
 This is a basic audio visualiser. It is split into two subprojects: `3d` and `2d` which, as the names suggest are 3d and 2d versions of the same project
 
-#### `3d`
+## `3d`
 
 This uses threejs to generate a 3d scene that you can pan and move around during the visualisation. Points are located in x and y space using the time domain data as it provides more variation. There is an explanation in the code as to how this is determined which is copied below. The z location is determined from the frequency data which is the other key difference from the 2d version as this value is represented by a second ring. 
 
-``` javascript
+```javascript
 // Calculate the x and y location. We need to work out the radius of the sphere the point
 //   is being drawn to and we know that the maximum value we can receive is 255 so we turn it
 //   into a muliitpler and then times it by the scale to form the radius
@@ -36,7 +22,7 @@ An example output is shown below although a lot of the effect is lost without be
 
 ![An example output of the 3D visualiser at a random instant](https://i.imgur.com/NJmhuWx.png)
 
-#### `2d`
+## `2d`
 
 This uses the same idea as the 3d version (and was actually developed first so it should really be the other way around). The innermost ring uses the same code as above to determine x and y and the outermost ring uses the same code but uses the frequencyData instead. There is also the slight modification that it does not render points that have a default position. This means that points appear and disappear and there is not a plain circle surrounding it which didn't quite look as good.
 

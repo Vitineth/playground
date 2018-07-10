@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+    html,
+    body {
+        margin: 0;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+    }
+
+    #info {
+        position: fixed;
+        top: 40px;
+        left: 0px;
+    }
+
+
+    .selector {
+        background: white;
+        padding: 30px;
+        text-align: center;
+        font-family: 'Roboto Condensed', sans-serif;
+        max-width: 40%;
+        min-width: 18pc;
+    }
+
+    #s1 {
+        z-index: 1000;
+        background: black;
+    }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/94/three.min.js"></script>
+    <script src="TrackballControls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pizzicato/0.6.3/Pizzicato.js"></script>
+</head>
+
+<body>
+    <div id="s1" style="display:flex;justify-content:center;align-items:center;width:100%;height:100%;">
+        <div class="selector">
+            <h1>Select music file</h1>
+            <p>By uploading a file</p>
+            <input type="file" name="audio-file" id="audio-file" accept="audio/*" onchange="triggerFile()">
+            <br>
+            <p><b>Note:</b> No data is transferred to the server when you select a file. All processing takes place on your machine via JavaScript.</p>
+            <p><b>Controls</b></p>
+            <p><code>r</code> Start music</p>
+            <p><code>s</code> Stop music</p>
+            <p><code>click+drag</code> pan around</p>
+            <p><code>right click+drag</code> move around</p>
+            <p><code>scroll</code> zoom</p>
+        </div>
+    </div>
+    <script src="visualiser.3d.v2.js"></script>
+    <script>
+    function triggerFile() {
+        var x = document.getElementById("audio-file");
+        if ('files' in x) {
+            if (x.files.length === 1) {
+                var reader = new FileReader();
+                reader.onload = (function(callback) { return function(e) { callback(e.target.result); }; })(function(data) {
+                    visualise(data);
+                    $("#s1").css("display", "none");
+                });
+                reader.readAsDataURL(x.files[0]);
+            }
+        }
+    }
+    </script>
+</body>
+
+</html>
