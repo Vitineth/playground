@@ -1,5 +1,3 @@
-console.log("This project uses Pizzicato which was authored by Alejandro Mantecon Guillen. It is released under the MIT license which is available at their repo where: https://github.com/alemangui/pizzicato/blob/master/LICENSE.");
-
 const minColor = [201, 75, 75];
 const maxColor = [144, 218, 208];
 const colorStops = 100;
@@ -58,7 +56,7 @@ function visualise(data) {
         // This is how many points we are actually getting. It should be equal to fftSize/2 so 1024 which is the
         //   number of spheres we created earlier
         var bufferLength = analyser.frequencyBinCount;
-        
+
         // Initialise two arrays to hold our data
         var timeDomainData = new Uint8Array(bufferLength);
         var frequencyData = new Uint8Array(bufferLength);
@@ -78,9 +76,13 @@ function visualise(data) {
         function draw() {
             requestAnimationFrame(draw);
 
-            // The center of the circle. As the canvas is 900x900, the center is therefore 450x450
-            let cX = 450;
-            let cY = 450;
+            // The center of the circle. As the canvas size is variable we need to work this out on every run
+            let cX = canvas.width / 2;
+            let cY = canvas.height / 2;
+
+            // We need to determine the radius of the circle that we can use. We don't want it going off the edge of the canvas
+            //   and we want to use at most 90% of the canvas so we pick the smallest raidus from the width and height
+            let maxR = Math.min(Math.round((0.9 * canvas.width) / 2), Math.round((0.9 * canvas.height) / 2));
 
             // Holds the angle that we are actually at when calculating the location of points
             let activeAngle = 0;
@@ -122,7 +124,7 @@ function visualise(data) {
                 //   of a circle
                 // Then just draw a point at that position
                 var v = (timeDomainData[i] / 255.0);
-                var r = 430 * v;
+                var r = maxR * v;
                 let x = cX + (r * Math.cos(activeAngle));
                 let y = cY + (r * Math.sin(activeAngle));
 
@@ -132,13 +134,13 @@ function visualise(data) {
                 //   if it is at 0 it will be at the maximum radius forming a nice outer ring that closes inward
                 //   as the values increase
                 v = 1 - (frequencyData[i] / 255.0);
-                r = (430 * v);
+                r = (maxR * v);
                 x = cX + (r * Math.cos(activeAngle));
                 y = cY + (r * Math.sin(activeAngle));
 
                 // If the point is not at the outermost radius then render it. We do this just so we don't get a plain
                 //   circle of points that doesn't move during the visualisation
-                if (r !== 430) point(x, y, canvasCtx, "#EC5F1C");
+                if (r !== maxR) point(x, y, canvasCtx, "#EC5F1C");
 
                 // And offset the angle for the next point
                 activeAngle += angleChange;
@@ -153,7 +155,7 @@ function visualise(data) {
         sound.play();
 
         // Once the song stops, we swap straight back to the song selection window
-        sound.on("stop",function() {
+        sound.on("stop", function() {
             $("#s1").css("display", "flex");
             $("#s2").css("display", "none");
         });
@@ -176,3 +178,16 @@ function visualise(data) {
         ctx.closePath();
     }
 }
+
+function handleResize(){
+    // When the window is resized, we need to resize the canvas to fit so we use the smallest of the width and height to make sure that we always have 
+    //   a square canvas that fits on the screen
+    $("#oscilloscope")
+        .width(Math.min(window.innerWidth, window.innerHeight))
+        .height(Math.min(window.innerWidth, window.innerHeight));
+}
+
+$(window).resize(handleResize);
+
+// Trigger a resize just so the canvas will scale automatically
+handleResize();
