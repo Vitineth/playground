@@ -5,3 +5,5 @@ This a path walker visualisation program. Built entirely in JS, a point walks ar
 An example of the output is given below.
 
 ![Example of Output](https://imgur.com/qsc75Jq.png)
+
+**[A demo is available here](walker.html)**
